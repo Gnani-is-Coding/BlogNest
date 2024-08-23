@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   return (
-    <div>
+    <div className="navbar">
       <nav className="navbar-container">
         <Link to="/" className="heading">
           BlogNest
@@ -49,7 +55,10 @@ function Navbar() {
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
             </svg> */}
           </button>
-          <button className="login-btn">
+          <button
+            className="login-btn"
+            onClick={() => setShowLogin(!showLogin)}
+          >
             Login
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +77,10 @@ function Navbar() {
               <line x1="15" x2="3" y1="12" y2="12" />
             </svg>
           </button>
-          <button className="login-btn">
+          <button
+            className="login-btn"
+            onClick={() => setShowRegisterForm(!showRegisterForm)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -89,6 +101,80 @@ function Navbar() {
           </button>
         </div>
       </nav>
+      {showLogin && (
+        <form className="login-container">
+          <h1 className="login-heading">Welcome</h1>
+          <div className="label-container">
+            <label htmlFor="login">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              className="login-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="label-container">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="form-submit-btn">
+            Login
+          </button>
+        </form>
+      )}
+
+      {showRegisterForm && (
+        <form className="login-container">
+          <h1 className="login-heading">Register Now</h1>
+          <div className="label-container">
+            <label htmlFor="login">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              className="login-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="label-container">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="label-container">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Password"
+              className="login-input"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="form-submit-btn">
+            Login
+          </button>
+        </form>
+      )}
     </div>
   );
 }

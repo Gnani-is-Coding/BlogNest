@@ -1,8 +1,12 @@
+.navbar {
+    position: sticky;
+    top: 0;
+}
 .navbar-container {
     position: sticky;
     top:0;
     border-radius: 10px 0px 0px 10px;
-    box-shadow: 10px 10px 10px rgb(219, 219, 223);
+    box-shadow: 2px 2px 5px rgb(219, 219, 223);
     padding: 8px 16px;
     width: 100vw;
     display: flex;
@@ -36,4 +40,64 @@
     display: flex;
     align-items: center;
     gap:10px;
+}
+.login-container {
+    border: 1px solid #e5ecf3;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    position: absolute;
+    right: 12%;
+    top: 60px;
+    box-shadow: 2px 2px 5px 2px #e5ecf3;
+    background-color: 
+    #ffffff;
+    z-index: 2;
+}
+.login-heading {
+    font-size: 0.8rem;
+    
+}
+.label-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.label-container label {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 0.7rem;
+}
+.login-input {
+    border-radius: 5px;
+    border: 1px solid #868585; 
+    padding: 3px 2px 3px 8px;
+}
+.form-submit-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 3px;
+    gap: 8px;
+    border: 1px solid #e5ecf3;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #0c8ce9;
+    color: #ffffff;
+    margin-top: 10px;
+    width: 100%;
+} 
+
+@media screen and (min-width: 992px) {
+    .login-container {
+        right: 7%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .login-container {
+        right: 5%;
+    }
 }
