@@ -1,0 +1,39 @@
+.navbar-container {
+    position: sticky;
+    top:0;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 10px 10px 10px rgb(219, 219, 223);
+    padding: 8px 16px;
+    width: 100vw;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.heading {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: bolder;
+    text-decoration: none;
+    color: #000;
+}
+.login-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #e5ecf3;
+    padding: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.login-btn:hover {
+    background-color: blue;
+    color: #ffffff;
+}
+.btn-containers{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
