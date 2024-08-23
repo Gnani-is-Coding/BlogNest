@@ -2,6 +2,25 @@
     width: 100%;
 }
 .blogs-container {
-    /* display: grid;
-    grid-template-columns: 1fr; */
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+@media screen and (min-width: 768px){
+    .blogs-container {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        padding: 10px;
+    }
+}
+
+
+@media screen and (min-width: 1200px){
+    .blogs-container {
+        display: grid;
+        grid-template-columns: 2fr 2fr 2fr;
+        padding: 10px;
+    }
 }
