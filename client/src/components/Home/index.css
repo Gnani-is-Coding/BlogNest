@@ -1,4 +1,7 @@
 .home-container {
-    background-color: #e5ecf3;
-    height: 100vh;
+    width: 100%;
+}
+.blogs-container {
+    /* display: grid;
+    grid-template-columns: 1fr; */
 }

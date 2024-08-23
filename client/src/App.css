@@ -2,3 +2,20 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+.app-container {
+    display:flex;
+    width: 100vw;
+    height: 100vh;
+}
+.main-container {
+    background-color: #e5ecf3;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+@media screen and (min-width: 670px) {
+    .main-container {
+    margin-left: 70px;
+    }
+}
