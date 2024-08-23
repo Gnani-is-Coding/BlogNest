@@ -1,0 +1,21 @@
+.tags-container {
+    display: flex;
+    border-bottom: 2px solid #a7adbb;
+    width: 100%;
+    justify-content: space-around;
+    padding: 10px;
+}
+.tag-item {
+    list-style-type:none;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.active-item {
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #a7bffa;
+    padding: 6px 12px;
+    font-weight: 800;
+}
