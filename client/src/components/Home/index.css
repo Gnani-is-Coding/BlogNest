@@ -16,8 +16,16 @@
     }
 }
 
+/* @media screen and (min-width: 992px){
+    .blogs-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding: 10px;
+    }
+} */
 
-@media screen and (min-width: 1200px){
+
+@media screen and (min-width: 1150px){
     .blogs-container {
         display: grid;
         grid-template-columns: 2fr 2fr 2fr;

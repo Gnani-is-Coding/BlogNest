@@ -66,8 +66,12 @@ function MobileNavigation() {
           </label>
         </div>
       </Link>
-      <Link to="/create-blog" className="link">
-        <div className="icon-container plus-button">
+      <Link to="/blogs/create" className="link">
+        <div
+          className={`icon-container plus-button ${
+            route === "/blogs/create" ? "active-container active-plus" : ""
+          }`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

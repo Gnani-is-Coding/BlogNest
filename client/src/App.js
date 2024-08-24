@@ -7,6 +7,7 @@ import Sidebar from "./components/SideBar";
 import Navbar from "./components/Navbar";
 import BlogsProvider  from "./BlogsContext";
 import BlogDetails from "./components/BlogDetails";
+import CreateBlog from "./components/CreateBlog";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/blog-details/:id" element={<BlogDetails/>} />
+        <Route path="/blogs/create" element={<CreateBlog/>} />
       </Routes>
     </main>
     </div>

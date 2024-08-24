@@ -1,13 +1,16 @@
-.card-container {
+.card-item-container {
     list-style-type: none;
-    display: flex;
-    flex-direction: column;
     width: 300px; 
     box-shadow: 2px 2px 5px 6px rgb(219, 219, 223);
-    background-color: #fff;
+    
+    background-color: #fff;  
     padding: 18px;
     margin: 10px;
     border-radius: 12px;
+}
+.card-container {
+    display: flex;
+    flex-direction: column;
     gap: 15px; 
 }
 .para {
@@ -38,4 +41,5 @@
 .upvote-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }

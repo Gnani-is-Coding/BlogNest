@@ -34,6 +34,36 @@ function Sidebar() {
             <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
             <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
           </svg>
+          <label>Home</label>
+        </div>
+      </Link>
+
+      <Link to="/blogs/create" className="link">
+        <div
+          className={`icon-container ${
+            route === "/blogs/create" ? "active-container" : ""
+          }`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-notebook-pen"
+          >
+            <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
+            <path d="M2 6h4" />
+            <path d="M2 10h4" />
+            <path d="M2 14h4" />
+            <path d="M2 18h4" />
+            <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+          </svg>
+          <label>Create</label>
         </div>
       </Link>
 
@@ -105,34 +135,6 @@ function Sidebar() {
           >
             <path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z" />
             <path d="M15 3v4a2 2 0 0 0 2 2h4" />
-          </svg>
-        </div>
-      </Link>
-
-      <Link to="/logout" className="link">
-        <div
-          className={`icon-container ${
-            route === "/logout" ? "active-container" : ""
-          }`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-notebook-pen"
-          >
-            <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
-            <path d="M2 6h4" />
-            <path d="M2 10h4" />
-            <path d="M2 14h4" />
-            <path d="M2 18h4" />
-            <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
           </svg>
         </div>
       </Link>
