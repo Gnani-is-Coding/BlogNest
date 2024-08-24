@@ -1,0 +1,25 @@
+GET http://localhost:5000/api/blogs
+
+###
+POST  http://localhost:5000/api/blogs/create
+Content-Type: application/json
+
+{
+    "title": "My First Blog",
+    "content": "To Start Blogging, one mneed to have these things",
+    "userName": "Gnani"
+}
+
+###
+PUT  http://localhost:5000/api/blogs/66c9eaafa34ff3d5683ebd47
+Content-Type: application/json
+
+{
+    "title": "My Seond Blog",
+    "content": "To Start Blogging, one mneed to have these things",
+    "userName": "Gnani",
+    "upVotesCount": "30"
+}
+
+###
+DELETE http://localhost:5000/api/blogs/66c9eabdd2fe248ad7f3a33d
