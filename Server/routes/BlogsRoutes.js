@@ -5,7 +5,7 @@ const authMiddleware = require("../authMiddleware")
 
 //read
 
-router.get("/", authMiddleware, async (req,res) => {
+router.get("/",async (req,res) => {
     try {
         const blogs = await Blogs.find({}).sort({createdAt: -1})
         res.send({blogs}) 

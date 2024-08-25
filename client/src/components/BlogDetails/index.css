@@ -17,3 +17,6 @@
     align-self: center;
     object-fit: cover;
 }
+.content {
+    font-size: 12px;
+}

@@ -4,21 +4,23 @@ import { Link } from "react-router-dom";
 
 function BlogCard({ data, handleUpVote, handleDownVote }) {
   const {
-    id,
-    username,
+    _id,
+    userName,
     title,
     imageUrl,
-    upVoteCount,
-    downVoteCount,
+    upVotesCount,
+    downVotesCount,
     commentsCount,
-    date,
+    createdAt,
+    content,
   } = data;
+  console.log(data, upVotesCount, downVotesCount, commentsCount);
 
   //   "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F507dbf27-df25-4d96-b09a-0a89e4b27ea4_1280x1562.gif
   return (
     <li className="card-item-container">
       <Link
-        to={`/blog-details/${id}`}
+        to={`/blog-details/${_id}`}
         className="card-container"
         style={{ textDecoration: "none", color: "inherit" }}
       >
@@ -38,17 +40,26 @@ function BlogCard({ data, handleUpVote, handleDownVote }) {
             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
             <circle cx="12" cy="7" r="4" />
           </svg>
-          <p>{username}</p>
+          <p>{userName}</p>
         </div>
 
         <span className="para">{title}</span>
 
-        <span className="date">{date.toDateString()}</span>
-        <img src={imageUrl} alt="blog" className="blog-img" />
+        <span className="date">{new Date(createdAt).toDateString()}</span>
+        <img
+          src={
+            imageUrl
+              ? imageUrl
+              : "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F507dbf27-df25-4d96-b09a-0a89e4b27ea4_1280x1562.gif"
+          }
+          alt="blog"
+          className="blog-img"
+        />
       </Link>
+
       <div className="upvote-container">
         <div style={{ display: "flex" }}>
-          <button className="login-btn" onClick={() => handleUpVote(id)}>
+          <button className="login-btn" onClick={() => handleUpVote(_id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -63,9 +74,9 @@ function BlogCard({ data, handleUpVote, handleDownVote }) {
             >
               <path d="m18 15-6-6-6 6" />
             </svg>
-            {upVoteCount > 0 && <span>{upVoteCount}</span>}
+            {upVotesCount > 0 && <span>{upVotesCount}</span>}
           </button>
-          <button className="login-btn" onClick={() => handleDownVote(id)}>
+          <button className="login-btn" onClick={() => handleDownVote(_id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -80,7 +91,7 @@ function BlogCard({ data, handleUpVote, handleDownVote }) {
             >
               <path d="m6 9 6 6 6-6" />
             </svg>
-            {downVoteCount > 0 && <span>{downVoteCount}</span>}
+            {downVotesCount > 0 && <span>{downVotesCount}</span>}
           </button>
         </div>
 

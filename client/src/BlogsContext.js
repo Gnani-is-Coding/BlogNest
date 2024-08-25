@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import Cookies from 'js-cookie'
 
 
 const BlogsContext = createContext({})
@@ -63,12 +64,71 @@ const blogData = [
   ];
 
 const BlogsProvider = ({children}) => {
-    const [theme, setTheme] = useState("light")
-  const [blogsData, setBlogsData] = useState(blogData);
+  const [theme, setTheme] = useState("light")
+  const [blogsData, setBlogsData] = useState([]);
   const [isLoading, setLoading] = useState(true)
 
+  const getBlogsData = async () => {
+    setLoading(true)
+    const endpoint = "http://localhost:5000/api/blogs"
+
+    // const token = Cookies.get
+    const options = {
+      methods: "GET",
+      header: {
+        'Content-Type': "application/json"
+      }
+    }
+
+    const response = await fetch(endpoint, options)
+    const data = await response.json()
+
+    if (response.ok) {
+      setLoading(false)
+      setBlogsData(data.blogs)
+    } 
+  }
+
+  const upDateBlog = async (id) => {
+    
+    const blogObj = blogsData.find((obj) => obj._id === id);
+    if (!blogObj) return; 
+  
+    const endpoint = `http://localhost:5000/api/blogs/${id}`;
+  
+    const token = Cookies.get("jwtToken");
+  
+    const options = {
+      method: "PUT",
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(blogObj),
+    };
+  
+    try {
+      const response = await fetch(endpoint, options);
+  
+      // Check if the response is ok (status is 2xx)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log(data, "updated blog");
+    } catch (error) {
+      console.error("Error updating blog:", error.message);
+    }
+  };
+  
+  
+  useEffect(() => {
+    getBlogsData()
+  }, [])
+
     return (
-        <BlogsContext.Provider value={{theme, setTheme, blogsData,setBlogsData,isLoading,setLoading}}>
+        <BlogsContext.Provider value={{theme, setTheme, blogsData,setBlogsData,isLoading,setLoading,upDateBlog}}>
             {children}
         </BlogsContext.Provider>
     )

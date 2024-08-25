@@ -6,15 +6,9 @@ import Spinner from "../Spinner";
 
 function BlogDetails() {
   // #TODO make an API call for comments
-  const { blogsData, isLoading, setLoading } = useBlogs();
+  const { blogsData, isLoading } = useBlogs();
   const { id } = useParams();
-  const [data, setData] = useState(blogsData.find((obj) => obj.id === id));
-
-  useEffect(() => {
-    setLoading(true);
-    setData(blogsData.find((obj) => obj.id === id));
-    setLoading(false);
-  }, [blogsData, id]);
+  const data = blogsData.find((obj) => obj._id === id);
 
   console.log(data, "data..");
   return (
@@ -24,8 +18,18 @@ function BlogDetails() {
       ) : (
         <div className="details-container">
           <h1>{data.title}</h1>
-          <span className="date">{data.date.toDateString()}</span>
-          <img src={data.imageUrl} alt="blogsImg" className="blogs-img" />
+          <p className="content">{data.content}</p>
+          <span className="date">{new Date(data.date).toDateString()}</span>
+
+          <img
+            src={
+              data.imageUrl
+                ? data.imageUrl
+                : " https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F507dbf27-df25-4d96-b09a-0a89e4b27ea4_1280x1562.gif"
+            }
+            alt="blogsImg"
+            className="blogs-img"
+          />
 
           <div className="upvote-container">
             <div style={{ display: "flex" }}>
@@ -44,7 +48,7 @@ function BlogDetails() {
                 >
                   <path d="m18 15-6-6-6 6" />
                 </svg>
-                {data.upVoteCount > 0 && <span>{data.upVoteCount}</span>}
+                {data.upVotesCount > 0 && <span>{data.upVotesCount}</span>}
               </button>
               <button className="login-btn">
                 <svg
@@ -61,8 +65,8 @@ function BlogDetails() {
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
-                {data.downVoteCount > 0 && (
-                  <span>{data.downVoteCount} Upvotes</span>
+                {data.downVotesCount > 0 && (
+                  <span>{data.downVotesCount} Upvotes</span>
                 )}
               </button>
             </div>
