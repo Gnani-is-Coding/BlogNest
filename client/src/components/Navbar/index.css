@@ -7,10 +7,10 @@
     top:0;
     border-radius: 10px 0px 0px 10px;
     box-shadow: 2px 2px 5px rgb(219, 219, 223);
-    padding: 8px 16px;
+    padding: 10px 50px;
     width: 100vw;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     background-color: #ffffff;
 }

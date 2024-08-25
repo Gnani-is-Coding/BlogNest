@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -11,6 +11,16 @@ function Navbar() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [showLoginBtn, setHideBtn] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get("jwtToken");
+    if (token) {
+      setHideBtn(false);
+    } else {
+      setHideBtn(true);
+    }
+  });
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -65,8 +75,6 @@ function Navbar() {
     const response = await fetch(endpoint, options);
     setLoading(false);
     const data = await response.json();
-
-    console.log(response, data, "respone");
 
     if (response.ok) {
       setErrMsg("");
@@ -125,11 +133,31 @@ function Navbar() {
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
             </svg> */}
           </button>
-          <button
-            className="login-btn"
-            onClick={() => setShowLogin(!showLogin)}
-          >
-            Login
+
+          {showLoginBtn ? (
+            <button
+              className="login-btn"
+              onClick={() => setShowLogin(!showLogin)}
+            >
+              Login
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-log-in"
+              >
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                <polyline points="10 17 15 12 10 7" />
+                <line x1="15" x2="3" y1="12" y2="12" />
+              </svg>
+            </button>
+          ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -140,35 +168,38 @@ function Navbar() {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="lucide lucide-log-in"
+              class="lucide lucide-circle-user"
             >
-              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-              <polyline points="10 17 15 12 10 7" />
-              <line x1="15" x2="3" y1="12" y2="12" />
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="10" r="3" />
+              <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
             </svg>
-          </button>
-          <button
-            className="login-btn"
-            onClick={() => setShowRegisterForm(!showRegisterForm)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-square-plus"
+          )}
+
+          {showLoginBtn && (
+            <button
+              className="login-btn"
+              onClick={() => setShowRegisterForm(!showRegisterForm)}
             >
-              <rect width="18" height="18" x="3" y="3" rx="2" />
-              <path d="M8 12h8" />
-              <path d="M12 8v8" />
-            </svg>
-            Join Now
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-square-plus"
+              >
+                <rect width="18" height="18" x="3" y="3" rx="2" />
+                <path d="M8 12h8" />
+                <path d="M12 8v8" />
+              </svg>
+              Join Now
+            </button>
+          )}
         </div>
       </nav>
       {showLogin && (
