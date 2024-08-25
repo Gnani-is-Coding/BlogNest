@@ -11,7 +11,7 @@ router.get("/", authMiddleware, async (req,res) => {
         res.send({blogs}) 
     } catch(e) {
         console.log("Error", e.message)
-        res.status(500).send({ Error: e.message})
+        res.status(500).send({message: e.message})
     }
 })
 
@@ -29,7 +29,7 @@ router.get("/:id",authMiddleware, async (req,res) => {
          
     } catch(e) {
         console.log("Error", e.message)
-        res.status(500).send({ Error: e.message})
+        res.status(500).send({message: e.message})
     }
 })
 
@@ -44,7 +44,7 @@ router.post("/create",authMiddleware, async (req,res) => {
          
     } catch(e) {
         console.log("Error", e.message)
-        res.status(500).send({ Error: e.message})
+        res.status(500).send({message: e.message})
     }
 })
 
@@ -55,12 +55,12 @@ router.put("/:id", authMiddleware, async (req,res) => {
     try {
         const blog = await Blogs.updateOne({_id: id}, {$set: {...req.body,updatedAt} })
 
-        if(!blog) return res.status(404).json({error: "Blog not Found"})
+        if(!blog) return res.status(404).json({ message: "Blog not Found"})
         res.json({message: "Successfully Updated",blog})
          
     } catch(e) {
         console.log("Error", e.message)
-        res.status(500).send({ Error: e.message})
+        res.status(500).send({message: e.message})
     }
 })
 
@@ -70,12 +70,12 @@ router.delete("/:id", authMiddleware, async (req,res) => {
     try {
         const blog = await Blogs.deleteOne({_id: id})
 
-        if(!blog) return res.status(404).json({error: "Blog not Found"})
+        if(!blog) return res.status(404).json({ message: "Blog not Found"})
         res.json({message: "Successfully deleted",blog})
          
     } catch(e) {
         console.log("Error", e.message)
-        res.status(500).send({ Error: e.message})
+        res.status(500).send({message: e.message})
     }
 })
 

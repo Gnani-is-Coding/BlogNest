@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
-      if (err) return res.status(401).json({ error: err.message });
+      if (err) return res.status(401).json({ message: err.message });
 
       req.payload = payload;
       next();
@@ -21,3 +21,14 @@ const authMiddleware = (req, res, next) => {
 };
 
 module.exports = authMiddleware;
+
+
+// bcrypt.hash(pass,salt)
+// bcrypt.compare(pass, oldPass)
+
+// jwt.sign(payload, secreteToken)
+
+// jwt.verify(token, secreteToken, (err, payload) => {
+
+// })
+

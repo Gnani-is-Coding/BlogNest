@@ -1,13 +1,83 @@
 import React, { useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [isLoading, setLoading] = useState(false);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const userCredentials = { username, password };
+
+    const endpoint = "http://localhost:5000/api/auth/login";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userCredentials),
+    };
+
+    const response = await fetch(endpoint, options);
+    setLoading(false);
+    const data = await response.json();
+
+    console.log(response, data, "respone");
+
+    if (response.ok) {
+      setErrMsg("");
+      setShowLogin(false);
+      const { token, username } = data;
+      Cookies.set("jwtToken", token, { expires: 1 });
+      Cookies.set("username", username, { expires: 1 });
+    } else {
+      setErrMsg(data.message);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (password !== confirmPassword) {
+      setErrMsg("Password didnt match");
+      setLoading(false);
+      return;
+    }
+
+    const endpoint = "http://localhost:5000/api/auth/register";
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    };
+
+    const response = await fetch(endpoint, options);
+    setLoading(false);
+    const data = await response.json();
+
+    console.log(response, data, "respone");
+
+    if (response.ok) {
+      setErrMsg("");
+      setShowRegisterForm(false);
+      const { token, username } = data;
+      Cookies.set("jwtToken", token, { expires: 1 });
+      Cookies.set("username", username, { expires: 1 });
+    } else {
+      setErrMsg(data.message);
+    }
+  };
 
   return (
     <div className="navbar">
@@ -102,17 +172,17 @@ function Navbar() {
         </div>
       </nav>
       {showLogin && (
-        <form className="login-container">
+        <form className="login-container" onSubmit={handleLogin}>
           <h1 className="login-heading">Welcome</h1>
           <div className="label-container">
-            <label htmlFor="login">Email</label>
+            <label htmlFor="login">Username</label>
             <input
-              type="email"
+              type="text"
               id="email"
-              placeholder="Email"
+              placeholder="username"
               className="login-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -128,23 +198,25 @@ function Navbar() {
             />
           </div>
           <button type="submit" className="form-submit-btn">
-            Login
+            {isLoading ? "Loading..." : "Login"}
           </button>
+
+          {errMsg && <p className="error-msg">{errMsg}</p>}
         </form>
       )}
 
       {showRegisterForm && (
-        <form className="login-container">
+        <form className="login-container" onSubmit={handleRegister}>
           <h1 className="login-heading">Register Now</h1>
           <div className="label-container">
-            <label htmlFor="login">Email</label>
+            <label htmlFor="login">Username</label>
             <input
-              type="email"
+              type="text"
               id="email"
-              placeholder="Email"
+              placeholder="username"
               className="login-input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -171,8 +243,10 @@ function Navbar() {
             />
           </div>
           <button type="submit" className="form-submit-btn">
-            Login
+            {isLoading ? "Loading..." : "Login"}
           </button>
+
+          {errMsg && <p className="error-msg">{errMsg}</p>}
         </form>
       )}
     </div>
