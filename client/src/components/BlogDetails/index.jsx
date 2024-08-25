@@ -6,11 +6,10 @@ import Spinner from "../Spinner";
 
 function BlogDetails() {
   // #TODO make an API call for comments
-  const { blogsData, isLoading } = useBlogs();
+  const { blogsData, isLoading, upVote, downVote } = useBlogs();
   const { id } = useParams();
   const data = blogsData.find((obj) => obj._id === id);
 
-  console.log(data, "data..");
   return (
     <>
       {isLoading ? (
@@ -33,7 +32,7 @@ function BlogDetails() {
 
           <div className="upvote-container">
             <div style={{ display: "flex" }}>
-              <button className="login-btn">
+              <button className="login-btn" onClick={() => upVote(data._id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -50,7 +49,7 @@ function BlogDetails() {
                 </svg>
                 {data.upVotesCount > 0 && <span>{data.upVotesCount}</span>}
               </button>
-              <button className="login-btn">
+              <button className="login-btn" onClick={() => downVote(data._id)}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -65,9 +64,7 @@ function BlogDetails() {
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
-                {data.downVotesCount > 0 && (
-                  <span>{data.downVotesCount} Upvotes</span>
-                )}
+                {data.downVotesCount > 0 && <span>{data.downVotesCount}</span>}
               </button>
             </div>
 

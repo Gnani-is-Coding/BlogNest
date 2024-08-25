@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
+import { useBlogs } from "../../BlogsContext";
 
 function BlogCard({ data, handleUpVote, handleDownVote }) {
   const {
@@ -14,7 +15,7 @@ function BlogCard({ data, handleUpVote, handleDownVote }) {
     createdAt,
     content,
   } = data;
-  console.log(data, upVotesCount, downVotesCount, commentsCount);
+  const { upVote, downVote } = useBlogs();
 
   //   "https://substackcdn.com/image/fetch/w_1200,h_600,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F507dbf27-df25-4d96-b09a-0a89e4b27ea4_1280x1562.gif
   return (
@@ -59,7 +60,7 @@ function BlogCard({ data, handleUpVote, handleDownVote }) {
 
       <div className="upvote-container">
         <div style={{ display: "flex" }}>
-          <button className="login-btn" onClick={() => handleUpVote(_id)}>
+          <button className="login-btn" onClick={() => upVote(_id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -76,7 +77,7 @@ function BlogCard({ data, handleUpVote, handleDownVote }) {
             </svg>
             {upVotesCount > 0 && <span>{upVotesCount}</span>}
           </button>
-          <button className="login-btn" onClick={() => handleDownVote(_id)}>
+          <button className="login-btn" onClick={() => downVote(_id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

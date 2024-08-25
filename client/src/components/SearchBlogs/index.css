@@ -1,0 +1,42 @@
+.search-container {
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .search-input-wrapper {
+    margin-bottom: 20px;
+    padding: 3px 40px;
+  }
+  
+  .search-input-wrapper label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  .blog-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .blog-list li {
+    margin-bottom: 20px;
+  }
+  
+  .no-results {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+  }

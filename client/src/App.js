@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import BlogsProvider  from "./BlogsContext";
 import BlogDetails from "./components/BlogDetails";
 import CreateBlog from "./components/CreateBlog";
+import SearchContainer from "./components/SearchBlogs";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/blog-details/:id" element={<BlogDetails/>} />
         <Route path="/blogs/create" element={<CreateBlog/>} />
+        <Route path="/search" element={<SearchContainer/>} />
       </Routes>
     </main>
     </div>

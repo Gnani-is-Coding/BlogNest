@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from 'js-cookie'
-import { useParams } from "react-router-dom";
 
 
 const BlogsContext = createContext({})
@@ -68,7 +67,6 @@ const BlogsProvider = ({children}) => {
   const [theme, setTheme] = useState("light")
   const [blogsData, setBlogsData] = useState([]);
   const [isLoading, setLoading] = useState(true)
-  const path = useParams()
 
   const getBlogsData = async () => {
     setLoading(true)
@@ -124,13 +122,35 @@ const BlogsProvider = ({children}) => {
     }
   };
   
+  const upVote = (id) => {
+    setBlogsData(
+      blogsData.map((obj) => {
+        if (obj._id === id) {
+          obj.upVotesCount += 1;
+        }
+        return obj;
+      })
+    );
+    upDateBlog(id);
+  };
+  const downVote = (id) => {
+    setBlogsData(
+      blogsData.map((obj) => {
+        if (obj._id === id) {
+          obj.downVotesCount += 1;
+        }
+        return obj;
+      })
+    );
+    upDateBlog(id);
+  };
   
   useEffect(() => {
     getBlogsData()
   }, [])
 
     return (
-        <BlogsContext.Provider value={{theme, setTheme, blogsData,setBlogsData,isLoading,setLoading,upDateBlog,getBlogsData}}>
+        <BlogsContext.Provider value={{theme, setTheme, blogsData,setBlogsData,isLoading,setLoading,upDateBlog,getBlogsData,upVote,downVote}}>
             {children}
         </BlogsContext.Provider>
     )
