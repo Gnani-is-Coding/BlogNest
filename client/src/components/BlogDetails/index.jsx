@@ -16,9 +16,11 @@ function BlogDetails() {
         <Spinner />
       ) : (
         <div className="details-container">
-          <h1>{data.title}</h1>
+          <h1 className="para">{data.title}</h1>
           <p className="content">{data.content}</p>
-          <span className="date">{new Date(data.date).toDateString()}</span>
+          <span className="date">
+            {new Date(data.createdAt).toDateString()}
+          </span>
 
           <img
             src={

@@ -70,7 +70,7 @@ const BlogsProvider = ({children}) => {
 
   const getBlogsData = async () => {
     setLoading(true)
-    const endpoint = "http://localhost:5000/api/blogs"
+    const endpoint = "https://blognest-backend-uafe.onrender.com/api/blogs"
 
     // const token = Cookies.get
     const options = {
@@ -94,7 +94,7 @@ const BlogsProvider = ({children}) => {
     const blogObj = blogsData.find((obj) => obj._id === id);
     if (!blogObj) return; 
   
-    const endpoint = `http://localhost:5000/api/blogs/${id}`;
+    const endpoint = `https://blognest-backend-uafe.onrender.com/api/blogs/${id}`;
   
     const token = Cookies.get("jwtToken");
   

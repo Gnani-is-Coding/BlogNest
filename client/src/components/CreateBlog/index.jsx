@@ -22,7 +22,8 @@ function CreateBlog() {
   const handlePostBlog = async (e) => {
     e.preventDefault();
 
-    const endpoint = "http://localhost:5000/api/blogs/create";
+    const endpoint =
+      "https://blognest-backend-uafe.onrender.com/api/blogs/create";
     const token = Cookies.get("jwtToken");
     const username = Cookies.get("username");
 

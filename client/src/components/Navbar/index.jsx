@@ -27,7 +27,8 @@ function Navbar() {
     setLoading(true);
     const userCredentials = { username, password };
 
-    const endpoint = "http://localhost:5000/api/auth/login";
+    const endpoint =
+      "https://blognest-backend-uafe.onrender.com/api/auth/login";
     const options = {
       method: "POST",
       headers: {
@@ -63,7 +64,8 @@ function Navbar() {
       return;
     }
 
-    const endpoint = "http://localhost:5000/api/auth/register";
+    const endpoint =
+      "https://blognest-backend-uafe.onrender.com/api/auth/register";
     const options = {
       method: "POST",
       headers: {
