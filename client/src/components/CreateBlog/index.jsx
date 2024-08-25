@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "./index.css";
+import { useBlogs } from "../../BlogsContext";
 
 function CreateBlog() {
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const navigate = useNavigate();
+  const { getBlogsData } = useBlogs();
 
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
@@ -14,14 +19,38 @@ function CreateBlog() {
     }
   };
 
-  const handlePostBlog = (e) => {
+  const handlePostBlog = async (e) => {
     e.preventDefault();
+
+    const endpoint = "http://localhost:5000/api/blogs/create";
+    const token = Cookies.get("jwtToken");
+    const username = Cookies.get("username");
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ title, content: description, userName: username }),
+    };
+
+    const response = await fetch(endpoint, options);
+    const data = await response.json();
+    console.log(data);
+
+    if (response.ok) {
+      getBlogsData();
+      navigate("/");
+    }
   };
 
   return (
     <div className="details-container" style={{ height: "100%" }}>
       <div className="close-post-btns-container">
-        <button className="login-btn">Close</button>
+        <Link to="/">
+          <button className="login-btn">Close</button>
+        </Link>
         <button className="login-btn" type="submit">
           Post
         </button>

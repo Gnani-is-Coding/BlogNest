@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./index.css";
 import { useBlogs } from "../../BlogsContext";
 import { useParams } from "react-router-dom";
