@@ -1,9 +1,11 @@
 const express = require("express") 
 const router = express.Router();
 const Blogs = require("../models/Blog");
+const authMiddleware = require("../authMiddleware")
 
 //read
-router.get("/", async (req,res) => {
+
+router.get("/", authMiddleware, async (req,res) => {
     try {
         const blogs = await Blogs.find({}).sort({createdAt: -1})
         res.send({blogs}) 
@@ -14,7 +16,7 @@ router.get("/", async (req,res) => {
 })
 
 //read specific
-router.get("/:id", async (req,res) => {
+router.get("/:id",authMiddleware, async (req,res) => {
     const {id} = req.params
     try {
         const blogs = await Blogs.find({_id: id})
@@ -32,7 +34,7 @@ router.get("/:id", async (req,res) => {
 })
 
 //create
-router.post("/create", async (req,res) => {
+router.post("/create",authMiddleware, async (req,res) => {
     const {title, content, userName} = req.body
     console.log(req.body)
     try {
@@ -47,7 +49,7 @@ router.post("/create", async (req,res) => {
 })
 
 //update
-router.put("/:id", async (req,res) => {
+router.put("/:id", authMiddleware, async (req,res) => {
     const {id} = req.params
     const updatedAt =  Date.now()
     try {
@@ -63,7 +65,7 @@ router.put("/:id", async (req,res) => {
 })
 
 //delete
-router.delete("/:id", async (req,res) => {
+router.delete("/:id", authMiddleware, async (req,res) => {
     const {id} = req.params
     try {
         const blog = await Blogs.deleteOne({_id: id})

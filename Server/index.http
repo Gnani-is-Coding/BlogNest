@@ -1,4 +1,7 @@
 GET http://localhost:5000/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoiR25hbmkifSwiaWF0IjoxNzI0NTU1NDI0fQ.nJNhxsE6HFixldTtV6szypVuUDOPfEJo02fJzU8tAgM
+
 
 ###
 POST  http://localhost:5000/api/blogs/create
@@ -23,3 +26,22 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:5000/api/blogs/66c9eabdd2fe248ad7f3a33d
+
+###
+POST http://localhost:5000/api/auth/register 
+Content-Type: application/json
+
+{
+    "username": "Gnani",
+    "email": "gnani@gmail.com",
+    "password": "12345"
+}
+
+###
+POST http://localhost:5000/api/auth/login 
+Content-Type: application/json
+
+{
+    "username": "Gnani",
+    "password": "12345"
+}

@@ -32,10 +32,10 @@ router.post("/register", async (req, res) => {
 })
 
 router.post("/login", async(req, res) => {
-    const {email, password} = req.body
+    const {username, password} = req.body
 
     try{
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ username });
         if (!user) {
             res.status(400).json({message:'Invalid username or email'});
 
@@ -46,7 +46,7 @@ router.post("/login", async(req, res) => {
                 const payLoad = {user: {username: user.username}}
                 const jwtToken = jwt.sign(payLoad, process.env.JWT_SECRET_TOKEN, (err, token) => {
                     if (err) throw err
-                    res.json({username:user.username, token: jwtToken})
+                    res.json({username:user.username, token})
                 })
 
             } else {
@@ -58,3 +58,5 @@ router.post("/login", async(req, res) => {
         res.status(500).send({error: e.message})
     }
 })
+
+module.exports = router

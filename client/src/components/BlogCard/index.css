@@ -2,10 +2,9 @@
     list-style-type: none;
     width: 300px; 
     box-shadow: 2px 2px 5px 6px rgb(219, 219, 223);
-    
     background-color: #fff;  
     padding: 18px;
-    margin: 10px;
+    margin: 8px;
     border-radius: 12px;
 }
 .card-container {
